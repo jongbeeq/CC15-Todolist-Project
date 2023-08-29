@@ -187,3 +187,63 @@ implement styles กับ className
 import styles from './Header.module.scss';
 
 // implement styles กับ className
+
+#### 5.1.1 : Logo
+
+แทรก Logo Home ลงใน container
+
+import { FaHome } from 'react-icons/fa';
+
+// add this code in return statement
+
+<div className='header__logo'>
+    <FaHome />
+
+#### 5.1.2 : Search
+
+สร้างไฟล์ Search.jsx
+สร้างไฟล์ Search.module.scss
+
+import { FaSearch } from 'react-icons/fa';
+
+<div className='search'>
+    <span className='search__icon'>
+        <FaSearch />
+    </span>
+    <input type='text' className='search__input' placeholder='search' />
+</div>;
+
+// import global.scss
+.search {
+position: relative;
+border-radius: 4px;
+
+    // magnify-icon
+    &__icon {
+        // position
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        // decorate
+        font-size: 1.6rem;
+        font-weight: 200;
+        color: grey;
+
+        // control-child
+        display: flex;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 5px;
+        padding-left: 30px;
+        border-radius: 5px;
+        border: 1px solid $grey-light;
+        font-size: 1.6rem;
+        outline: none;
+        color: $grey-dark;
+    }
+
+}

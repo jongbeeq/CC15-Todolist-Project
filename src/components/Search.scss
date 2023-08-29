@@ -1,0 +1,27 @@
+@import "../index.scss";
+@import "../app/App.scss";
+
+.search {
+    position: relative;
+
+    &__icon {
+        position: absolute;
+        left: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        color: $grey-dark;
+        display: flex;
+
+    }
+
+    &__input {
+        padding: 5px;
+        padding-left: 30px;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid $grey-light;
+        font-size: 1.6rem;
+        outline: none;
+    }
+}

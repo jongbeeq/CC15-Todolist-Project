@@ -1,8 +1,8 @@
 import './App.scss';
 import { FaHome } from 'react-icons/fa';
-import Header from './Header';
-import './Header.scss';
-import './index.scss';
+import Header from '../components/Header';
+import '../components/Header.scss';
+import '../index.scss';
 
 function App() {
   return (

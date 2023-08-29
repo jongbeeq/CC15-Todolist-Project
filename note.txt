@@ -1,0 +1,9 @@
+/*
+// SYNTAX: npm run <script_name> === npx <actual_script>
+// npm run start === npx react-scripts start
+
+// npm run start === npx reac-scripts start
+// npm run == ดู package.json ที่ key scripts
+// npm run start === ดู package.json ที่ key scripts และคีย์ย่อย start => react-scripts start
+// เอา react-scripts start มารับ npx ให้
+*/

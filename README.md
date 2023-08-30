@@ -247,3 +247,162 @@ border-radius: 4px;
     }
 
 }
+5.2 : SideBar
+5.2.1 : สร้าง Sidebar
+สร้างไฟล์ Sidebar.jsx
+
+<aside className='sidebar'>
+    <section className='sidebar_category'>{/* for generic list*/}</section>
+    <section className='sidebar_category'>{/* for project list*/}</section>
+</aside>
+.sidebar {
+    position: sticky;
+
+    // control-child
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 30px;
+
+}
+5.2.2 : Generic List
+children แรก ของ .sidebar_category
+
+<ul className='list'>
+    <li className='list__item'>
+        <span className='list__icon'>
+            <FaInbox />
+        </span>
+        <h6 className='list__text'>Inbox</h6>
+    </li>
+    <li className='list__item'>
+        <span className='list__title'>
+            <FaCalendar />
+        </span>
+        <h6 className='list__title'>Today</h6>
+    </li>
+    <li className='list__item'>
+        <span className='list__icon'>
+            <FaCalendarAlt />
+        </span>
+        <h6 className='list__title'>Next 7 Days</h6>
+    </li>
+</ul>
+// overide ใน global
+li {
+    list-style: none;
+}
+
+// ใน module.scss
+
+.list {
+display: flex;
+flex-direction: column;
+gap: 5px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: $grey-dark;
+        }
+    }
+
+    &__icon {
+        display: flex;
+    }
+
+    &__title {
+        font-weight: 500;
+    }
+
+}
+Challenge-1 : Refactor <li></li> เป็น ListItem Component
+// Before Refator
+
+<li className='list__item'>
+    <span className='list__icon'>
+        <FaInbox />
+    </span>
+    <h6 className='list__text'>Inbox</h6>
+</li>
+
+// After Refactor
+<ListItem  /> // with some props
+Challenge-2 : Refactor <ul></ul> เป็น Lists Component
+// Before Refactor
+
+<ul className='list'>
+    <ListItem  /> // with some props
+    <ListItem  /> // with some props
+    <ListItem  /> // with some props
+</ul>
+
+// After Refactor (Sol A)
+<Lists /> // with some props
+
+// After Refactor (Sol B)
+<Lists>
+<ListItem  /> // with some props
+<ListItem  /> // with some props
+<ListItem  /> // with some props
+</Lists>
+5.2.3 : Project List
+children ที่สอง ของ .sidebar_category
+
+<div className='accordion'>
+    <div className='accordion__header'>
+        <span className='accordion__header__icon'>
+            <FaChevronDown />
+        </span>
+        <h6 className='accordion__header__title'>Projects</h6>
+    </div>
+    <div className='accordion__content'>
+        <ul className='list'>
+            <li className='list__item'>
+                <span className='list__icon'>
+                    <FaInbox />
+                </span>
+                <h6 className='list__title'>Project-A</h6>
+            </li>
+            <li className='list__item'>
+                <span className='list__icon'>
+                    <FaInbox />
+                </span>
+                <h6 className='list__title'>Project-B</h6>
+            </li>
+        </ul>
+    </div>
+</div>
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+
+        &__icon {
+            display: flex;
+        }
+        &__title {
+            font-size: 1rem;
+        }
+    }
+
+    &__content {
+        // using css of lists
+    }
+
+}
+challenge : refactor to <Accordion/>
+Tip : Reuse component

@@ -406,3 +406,88 @@ children ที่สอง ของ .sidebar_category
 }
 challenge : refactor to <Accordion/>
 Tip : Reuse component
+
+6 : TodoContent
+สร้างไฟล์ TodoContent
+
+<main className={styles.todo__container}>
+  {/* for Header */}
+  {/* for Create */}
+  {/* for Lists */}
+</main>
+.todo_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+7 : Todo-header
+สร้างไฟล์ TodoHeader.jsx
+เพิ่ม markup และ implement css module
+นำ TodoHeader ไป render ใน TodoContent
+export function TodoHeader() {
+  let today = new Date();
+  let options = { weekday: 'short', day: 'numeric', month: 'short' };
+
+return (
+
+<div className={styles.header}>
+<h1 className={styles.header__text}>Inbox</h1>
+<span className={styles.header__date}>{today.toLocaleDateString('en-US', options)}</span>
+</div>
+);
+}
+.header {
+display: flex;
+gap: 10px;
+align-items: baseline;
+
+&**text {
+font-size: 2.4rem;
+}
+&**date {
+font-size: 1.2rem;
+color: $grey-dark;
+}
+}
+
+6 : TodoContent
+สร้างไฟล์ TodoContent
+
+<main className={styles.todo__container}>
+  {/* for Header */}
+  {/* for Create */}
+  {/* for Lists */}
+</main>
+.todo_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+7 : Todo-header
+สร้างไฟล์ TodoHeader.jsx
+เพิ่ม markup และ implement css module
+นำ TodoHeader ไป render ใน TodoContent
+export function TodoHeader() {
+  let today = new Date();
+  let options = { weekday: 'short', day: 'numeric', month: 'short' };
+
+return (
+<div className={styles.header}>
+<h1 className={styles.header__text}>Inbox</h1>
+<span className={styles.header__date}>{today.toLocaleDateString('en-US', options)}</span>
+</div>
+);
+}
+.header {
+display: flex;
+gap: 10px;
+align-items: baseline;
+
+&**text {
+font-size: 2.4rem;
+}
+&**date {
+font-size: 1.2rem;
+color: $grey-dark;
+}
+}

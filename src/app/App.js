@@ -9,6 +9,9 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import Lists from "../components/Lists";
+import TodoHeader from "../components/Todo/TodoHeader";
+import TodoCreate from "../components/Todo/TodoCreate";
+import TodoLists from "../components/Todo/TodoLists";
 
 function App() {
   const generalLists = [
@@ -44,9 +47,23 @@ function App() {
           </section>
         </aside>
       </div>
-      <div className="todo__content">TodoContent</div>
+      <div className="todo__content">
+        <main className="todo__container">
+          <TodoHeader />
+          <TodoCreate />
+          <TodoLists />
+        </main>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+/* Challenge
+- ให้ 2 section render UI ที่...
+  - Option A (2/5): render UI ต่างกัน <List/> กับ <Accordian/> : Difficult 2.5
+  - Option B (4/5): render UI เดียวกัน เช่น <Lists/>
+  - Option C (5/5): render UI <Lists/> ภายใต้ <Accordian> <Lists/> <Accordian>
+  // ใช้ props.children
+*/

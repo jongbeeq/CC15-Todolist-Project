@@ -8,7 +8,6 @@ prop = {
 }
 */
 
-
 function ListItem(prop) {
     console.log(prop)
 

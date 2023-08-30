@@ -75,7 +75,7 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px 30px;
-    background: wheat;
+    // background: wheat;
     height: calc(100vh - $header-height);
 }
 
@@ -85,7 +85,12 @@
 .list {
     display: flex;
     flex-direction: column;
-    // Element
+    
+}
+
+// SCSS : mixins and extends concept
+.accordian {
+    // ELEMENT
     &__item {
         display: flex;
         align-items: center;
@@ -93,16 +98,22 @@
         font-size: 2rem;
         padding: 10px;
         border-radius: 4px;
-        cursor: pointer;
-
-        &:hover{
-            background-color: grey;
+        
+        // MODIFIER
+        &__icon {
+            cursor: pointer;
+            // background-color: red;
+            transition: 1s;
         }
-        // Modifier
+
+        &__active {
+            transform: rotate(-90deg);
+        }
+
         &__text {
-            font-weight: 400;
-            
+            font-weight: inherit;
         }
     }
+
 }
 

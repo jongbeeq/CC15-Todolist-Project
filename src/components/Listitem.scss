@@ -1,0 +1,27 @@
+@import "../index.scss";
+
+.list {
+    
+    &__item {
+    display: flex;
+    align-items: center;
+    gap:  15px;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: $grey-light;
+    }
+    // Modifier
+    &__text {
+        font-weight: inherit;
+    }
+}
+}
+
+.active {
+    font-weight: 600;
+    background-color: $grey-light;
+}

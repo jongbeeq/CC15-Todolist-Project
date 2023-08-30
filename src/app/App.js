@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import '../components/Header.scss';
 import '../index.scss';
 import { FaInbox, FaCalendar, FaCalendarAlt, FaChevronDown } from 'react-icons/fa';
+import ListItem from '../components/Listitem';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <aside className='sidebar'>
         <section className='sidebar_category'>
           <ul className='list'>
-            <li className='list__item'>
+            {/* <li className='list__item'>
               <FaInbox className='list__item__icon'/>
               <p className='list__item__text'>Inbox</p>
             </li>
@@ -26,7 +27,19 @@ function App() {
             <li className='list__item'>
               <FaCalendarAlt className='list__item__icon'/>
               <p className='list__item__text'>Next 7 days</p>
-            </li>
+            </li> */}
+            <ListItem 
+              text="Inbox"
+              icon={<FaInbox/>}
+              />
+            <ListItem 
+              text="Today"
+              icon={<FaCalendar/>}
+              />
+            <ListItem 
+              text="Next 7 Days" 
+              icon={<FaCalendarAlt/>}
+              />
           </ul>
         </section>
         <section className='sidebar_category'>2</section>

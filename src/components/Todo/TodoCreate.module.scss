@@ -1,38 +1,42 @@
-@import '../../index.scss';
+@import '../../styles/global.scss';
 
 .todo__create {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px $todo-content-padding;
+  color: $grey-700;
+
+  &:hover {
+    & .todo__create__button {
+      background-color: $primary;
+      color: $white;
+    }
+
+    & .todo__create__text {
+      color: $primary;
+    }
+  }
+
+  &__button {
+    width: $circle;
+    height: $circle;
+    border-radius: 50%;
+    transition: all 0.3s;
     display: flex;
-    gap: 10px;
+    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    font-size: $circle * 0.9;
 
-    &:hover {
-        & .todo__create__button {
-            background-color: $primary;
-            color: $white;
-        }
-        & .todo__create__text {
-            color: $primary;
-        }
-    }
+    // ทำให้ปุ่มอยู่กลาง
+    // display: inline-block;
+    // vertical-align: middle;
+    // text-align: center;
+  }
 
-    &__button{
-        font-size: 2.4rem;
-        width: 2.4rem;
-        height: 2.4rem;
-        border-radius: 50%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 2.2rem;
-        color: currentColor;
-    }
-
-    &__text {
-        color: $grey-dark;
-        font-weight: 500;
-        font-size:  1.6rem;
-        line-height: 1.2rem;
-    }
+  &__text {
+    font-weight: 500;
+    font-size: $text-xl;
+  }
 }

@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Button } from '../Common/Button/Button';
 import styles from './TodoForm.module.scss';
@@ -14,7 +15,7 @@ CC1 - Form Handle
 
 -ใช้ FN ไปผูกกับ Event ชื่อ onSubmit
 -FN จะถูก Broswer เรียกใช้ (เมื่อไหร่?) โดยส่ง parameter มา 1 ตัว (event Object)
--โดย default ทุกปุ่มใน <form> จะทหำหน้าที่ submit
+-โดย default ทุกปุ่มใน <form> จะทำหน้าที่ submit
 -วิธีแก้ ต้องกำหนด type ของปุ่ม
   - type='submit'
   - type='button'
@@ -24,7 +25,6 @@ CC1 - Form Handle
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
   const [taskInput, setTaskInput] = useState("");
-  console.log(taskInput);
 
   const handleChangeInput = function (event) {
     if (isError) setIsError(false);
@@ -47,7 +47,19 @@ function TodoForm(props) {
       return;
     }
 
-    console.log('submit');
+    console.log('submit === create New Todo');
+    // create newTodo
+    // 1 - ส่ง Request ไปหลังบ้านเพื่อ save ลง Database
+    // 2 - ทำการอัพเดท State ของ AllTodo == React ทำการ Rerender
+    // data = []
+    // data = [{id:number,task:string,status:boolean,due_date:YYY-MM-DD}]
+    // oldState = [{o},{o},{o}] === props.data
+    // newState = [{n},{o},{o},{o}]
+
+    // Send taskInput to addTodo
+    props.addTodo(taskInput);
+
+    props.setIsOpenForm(false);
   };
 
   const handleCancel = function () {

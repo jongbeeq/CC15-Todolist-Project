@@ -48,9 +48,9 @@ const [state,setState]= useState(initialState:any)
 */
 
 // #1 : FC = Function Component (Render)
-function TodoCreate() {
+function TodoCreate(props) {
   // HOOK FN
-  const [isOpenForm, setIsOpenForm] = useState(true)
+  const [isOpenForm, setIsOpenForm] = useState(false)
 
   // #2 : JS Function (Logic)
   const handleClick = function () {
@@ -63,6 +63,7 @@ function TodoCreate() {
         <TodoForm
           textSubmit='Add Task'
           setIsOpenForm={setIsOpenForm}
+          addTodo={props.addTodo}
         />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>

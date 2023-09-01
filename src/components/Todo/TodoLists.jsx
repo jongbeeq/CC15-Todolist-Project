@@ -1,35 +1,31 @@
-import { useState } from 'react';
-import TodoForm from './TodoForm';
-import styles from './TodoLists.module.scss';
 import TodoItem from './TodoItem';
+import styles from './TodoLists.module.scss';
 
 /*
-data = Array<{id:number, task:string, status:boolean , due_date:string}>
+SCHEMA
+todoObj={id:number, task:string, status:boolean, due_date:string}
+
+data = Array[] {id:number, task:string, status:boolean, due_date:string}
+หรือ data = Array[] todoObj
+
+dataRender = Array[] <TodoItem task=... done=... date=.... /> 
 */
 
-function TodoLists({ data, deleteTodo, editTodo }) {
-  // CRUD =Create-Read-Update-Delete
-
-  const [isOpenForm, setIsOpenForm] = useState(true)
-
-  // #2 : JS Function (Logic)
-  const handleClick = function () {
-    setIsOpenForm(!isOpenForm);
-  };
-
+function TodoLists(props) {
   return (
     <ul className={styles.todo__lists}>
-      {data.map(({ id, task, status, due_date }) => (
+      {props.data.map((todoObj) => (
         <TodoItem
-          id={id}
-          task={task}
-          done={status}
-          date={due_date}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}
-        />)
-      )}
-    </ul >
+          key={todoObj.id}
+          id={todoObj.id}
+          task={todoObj.task}
+          done={todoObj.status}
+          date={todoObj.due_date}
+          deleteTodo={props.deleteTodo}
+          editTodo={props.editTodo}
+        />
+      ))}
+    </ul>
   );
 }
 

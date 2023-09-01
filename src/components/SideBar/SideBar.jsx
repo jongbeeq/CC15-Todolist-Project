@@ -20,8 +20,9 @@ function SideBar() {
       </section>
 
       <section className={styles.sidebar__category}>
+        {/* Accordion */}
         <div className={styles.accordion}>
-          {/* Toggle */}
+          {/* 1-Toggle */}
           <div className={styles.accordion__toggle}>
             <li className={styles.accordion__item}>
               <FaChevronDown
@@ -30,6 +31,7 @@ function SideBar() {
               <p className={styles.accordion__item__text}>Projects</p>
             </li>
           </div>
+          {/* 2-List */}
           <Lists data={projectLists} />
         </div>
       </section>

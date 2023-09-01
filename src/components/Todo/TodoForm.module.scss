@@ -24,7 +24,7 @@
 
 .todo__form__footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -34,23 +34,10 @@
   font-size: $text-base;
   font-weight: 600;
   color: $primary;
+  flex: 1;
 }
-
 .todo__form__buttons {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  // flex: 1;
-
-  // & > button {
-  //   border: none;
-  //   padding: 8px;
-  //   border-radius: 3px;
-  //   cursor: pointer;
-  // }
-
-  // & > button:last-child {
-  //   background-color: $primary;
-  //   color: $white;
-  // }
 }

@@ -7,7 +7,7 @@ import TodoItem from './TodoItem';
 data = Array<{id:number, task:string, status:boolean , due_date:string}>
 */
 
-function TodoLists({ data }) {
+function TodoLists({ data, deleteTodo, editTodo }) {
   // CRUD =Create-Read-Update-Delete
 
   const [isOpenForm, setIsOpenForm] = useState(true)
@@ -21,10 +21,12 @@ function TodoLists({ data }) {
     <ul className={styles.todo__lists}>
       {data.map(({ id, task, status, due_date }) => (
         <TodoItem
-          key={id}
+          id={id}
           task={task}
           done={status}
           date={due_date}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
         />)
       )}
     </ul >

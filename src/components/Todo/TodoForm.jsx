@@ -69,6 +69,11 @@ function TodoForm(props) {
     props.setIsOpenForm(false);
   };
 
+  const handleEdit = function () {
+    props.editTodo('edit')
+  }
+
+
   return (
     <form className={styles.todo__form__container} onSubmit={handleSubmit}>
       {/*	Body */}

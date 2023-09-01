@@ -40,6 +40,17 @@ function App() {
     setAlltodos((p) => [newTodo, ...p])
   };
 
+  // delete
+  // const [isDelete, setIsDelete] = useState(true)
+
+  const deleteTodo = function (todoId) {
+    setAlltodos(allTodos.filter((obj) => obj.id != todoId))
+  }
+
+  const editTodo = function (newTask) {
+    console.log(newTask);
+  };
+
   return (
     <div className='todo'>
       <div className='todo__header'>
@@ -56,7 +67,7 @@ function App() {
             setTodo={setAlltodos}
             addTodo={addTodo}
           />
-          <TodoLists data={allTodos} />
+          <TodoLists data={allTodos} deleteTodo={deleteTodo} editTodo={editTodo} />
         </main>
       </div>
     </div>

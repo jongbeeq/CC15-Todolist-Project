@@ -7,27 +7,32 @@ import TodoForm from './TodoForm';
 // function TodoItem(props) {
 // Object Destructure
 // const { task, done, date } = props;
-function TodoItem({ id, task, done, date }) {
+function TodoItem(props) {
     const [isOpenForm, setIsOpenForm] = useState(false)
     const handleClick = function () {
         setIsOpenForm(!isOpenForm);
     };
+
+    const handleDelete = function () {
+        props.deleteTodo(props.id)
+    }
+
     return (
         <>{isOpenForm ? (
-            <TodoForm textSubmit='Edit' setIsOpenForm={setIsOpenForm} />
+            <TodoForm textSubmit='Edit' setIsOpenForm={setIsOpenForm} editTodo={props.editTodo} />
         ) : (
             <li className={styles.todo}>
-                <div className={`${styles.todo__checkbox} ${done ? styles.todo__checkbox__done : ''}`} >
+                <div className={`${styles.todo__checkbox} ${props.done ? styles.todo__checkbox__done : ''}`} >
                     <HiOutlineCheck className={styles.todo__checkbox__icon} />
                 </div>
-                <p className={`${styles.todo__task} ${done ? styles.todo__task__done : ""}`}>{task}</p>
-                <span className={styles.todo__date}>{date}</span>
+                <p className={`${styles.todo__task} ${props.done ? styles.todo__task__done : ""}`}>{props.task}</p>
+                <span className={styles.todo__date}>{props.date}</span>
                 <div className={styles.todo__action}>
                     <span>
                         <FaPen className={styles.todo__edit} onClick={handleClick} />
                     </span>
                     <span>
-                        <FaTrashAlt className={styles.todo__delete} />
+                        <FaTrashAlt className={styles.todo__delete} onClick={handleDelete} />
                     </span>
                 </div>
             </li>)}

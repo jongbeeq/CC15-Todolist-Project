@@ -1,34 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Button } from '../Common/Button/Button';
 import styles from './TodoForm.module.scss';
-/*
-  props = {
-    textSubmit : string
-  }
-*/
-/*
-CC1- Form Handle
-- ใช้ FN ไปผูกกับ Event ชื่อ onSubmit
-- FN จะถูก Browserเรียกใช้ (เมื่อไหร่ ?) โดยส่ง parameter มา 1 ตัว (event Object)
-- โดย default ทุกปุ่มใน <form> จะทำหน้าที่ submit
-- วิธีแก้ ต้องกำหนด type ของปุ่ม
-  - type="submit" :  <button type='button'>1</button>
-  - type="button" :  <button type='submit'>2</button>
-*/
+// import useTodo from '../../hooks/useTodo';
+import { TodoContext } from '../../context/TodoContext';
 
-/* 
-props = {
-  textSubmit : string
-  setIsOpenForm : FN
-  oldTodo: {id,task,status,due_date}
-  addTodo: FN,
-  editTodo:FN
-}
-*/
 function TodoForm(props) {
   const [isError, setIsError] = useState(false);
   const [taskInput, setTaskInput] = useState(props.oldTodo?.task || '');
+  // const { addTodo, editTodo } = useTodo();
+  const { addTodo, editTodo } = useContext(TodoContext)
 
   const handleChangeInput = function (event) {
     if (isError) setIsError(false);
@@ -42,11 +23,11 @@ function TodoForm(props) {
       setIsError(true);
       return;
     }
-    if (props.addTodo) props.addTodo(taskInput);
-    else if (props.editTodo && props.oldTodo) {
-      props.editTodo(props.oldTodo.id, { task: taskInput });
-    }
-
+    // if (props.addTodo) props.addTodo(taskInput);
+    // else if (props.editTodo && props.oldTodo) {
+    //   props.editTodo(props.oldTodo.id, { task: taskInput });
+    // }
+    if (props.oldTodo) editTodo(props.oldTodo.id, { task: taskInput });
     props.setIsOpenForm(false);
   };
 

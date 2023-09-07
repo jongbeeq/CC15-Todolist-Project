@@ -1,20 +1,14 @@
 import TodoItem from './TodoItem';
 import styles from './TodoLists.module.scss';
-
-/*
-SCHEMA
-todoObj={id:number, task:string, status:boolean, due_date:string}
-
-data = Array[] {id:number, task:string, status:boolean, due_date:string}
-หรือ data = Array[] todoObj
-
-dataRender = Array[] <TodoItem task=... done=... date=.... /> 
-*/
+import { useContext } from 'react';
+import { TodoContext } from '../../context/TodoContext';
 
 function TodoLists(props) {
+  const { allTodos } = useContext(TodoContext);
+  console.log(allTodos); // 
   return (
     <ul className={styles.todo__lists}>
-      {props.data.map((todoObj) => (
+      {allTodos.map((todoObj) => (
         <TodoItem
           key={todoObj.id}
           id={todoObj.id}

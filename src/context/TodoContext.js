@@ -1,13 +1,23 @@
+import axios from "axios";
 import { createContext } from "react";
 import { useState, useEffect} from "react";
 import dayjs from "dayjs";
 // ชื่อ Context => ใช้ทั้ง Provider , Consumer
 const TodoContext = createContext()
 const END_POINT = "http://localhost:8080/api/todos"
+axios.defaults.baseURL = "http://localhost:8080/api/todos"
 
 // SetUp Context ฝั่ง Provider
 function TodoContextProvider (props) {
     const [allTodos,setAllTodos] = useState([]);
+    const [showTodos, setShowTodos] = useState([]);
+
+    // Search
+    const searchTodo = (keyword) => {
+        if(keyword.trim() === "") setShowTodos(allTodos);
+        const newShowTodos = allTodos.filter((todoObj) => todoObj.task.toLowerCase().includes(keyword.toLowerCase()))
+        setShowTodos(newShowTodos);
+    };
 
     // #2 : Read
     async function fetchAllTodo() {
@@ -22,6 +32,7 @@ function TodoContextProvider (props) {
             })
     
             setAllTodos(newTodoLists);
+            setShowTodos(newTodoLists);
         } catch (error) {
             console.log(error)
         }
@@ -53,6 +64,7 @@ function TodoContextProvider (props) {
           delete createdTodo.date;
           // Update STATE
           setAllTodos((p) => [createdTodo, ...p]);
+          setShowTodos((p) => [createdTodo, ...p]);
         } catch (error) {
           console.log(error)
         }
@@ -85,6 +97,7 @@ function TodoContextProvider (props) {
             const newTodoLists = [...allTodos];
             newTodoLists[foundedIndex] = { ...data.todo, due_date: data.todo.date };
             setAllTodos(newTodoLists);
+            setShowTodos(newTodoLists);
           }
         } catch (error) {
           console.log(error)
@@ -99,14 +112,21 @@ function TodoContextProvider (props) {
       let response = await fetch(`${END_POINT}/${todoId}`, options);
       if (response.status === 204) {
         setAllTodos((prev) => prev.filter((todo) => todo.id !== todoId));
+        setShowTodos((prev) => prev.filter((todo) => todo.id !== todoId));
       }
     } catch (error) {
       console.log(error)
     }
     };
 
-    const sharedObj = {value: 60, allTodos ,addTodo ,fetchAllTodo,editTodo,deleteTodo};
+    const sharedObj = {allTodos ,showTodos, addTodo ,fetchAllTodo,editTodo,deleteTodo,searchTodo};
     return <TodoContext.Provider value={sharedObj}>{props.children}</TodoContext.Provider>
+    
+    // {props.children}
+    // === <TodoContextProvider>
+    //          <App/>
+    //     </TodoContextProvider>
+    // === <TodoContextProvider children={<App/>}/>
 }
 
 // export ไปครอบ UI
